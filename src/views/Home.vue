@@ -1,18 +1,23 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <span class="icon-bookmark"></span>
+    <span class="icon-clock"></span>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import Epub from 'epubjs'
+global.ePub = Epub
 export default {
   name: 'home',
-  components: {
-    HelloWorld
+  mounted () {
+    this.book = new Epub('/2018_Book_Self-AssembledMoleculesNewKind.epub')
+    this.book.renderTo('read', {
+      width: window.innerWidth,
+      height: window.innerWidth
+    }).display()
   }
 }
 </script>
+<style>
+</style>
